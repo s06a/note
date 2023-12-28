@@ -15,22 +15,26 @@ note i # to initialize the directory
 ## How to use?
 
 #### Add note
-```bash
+```
 note a [press enter]
-write or paste note in a single line
-or in multiple lines
-accompanied with multiple blank lines
 
+write or paste note in a single line
+
+or in multiple lines
+
+or accompanied with blank lines
 
 or even markdowns
 # like this title
 
-or even complex jsons like this one:
+or even jsons like this one:
 {
     'reasonToUse': 'It is aswesome!'
 }
 
 don't worry about the complexity of your note!
+
+press ctrl+d when you finished writing, Voila!
 ```
 
 #### Search for keywords
