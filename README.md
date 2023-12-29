@@ -16,26 +16,16 @@ note i # to initialize the directory
 
 #### Add note
 ```
-note a [press enter]
-
-write or paste note in a single line
-
-or in multiple lines
-
-or accompanied with blank lines
-
-or even markdowns
-# like this title
-
-or even jsons like this one:
-{
-    'reasonToUse': 'It is aswesome!'
-}
-
-don't worry about the complexity of your note!
-
-press ctrl+d when you finished writing, Voila!
+note a [press enter] [write your note] [press ctrl+d when finished]
 ```
+
+### Notes can be
+
+- single line
+- multiple line
+- json
+- markdown
+- or a complex combination of the afformentioned
 
 #### Search for keywords
 

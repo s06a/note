@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# todo: take notes in different files
 # todo: encrypt notes
 # todo: sync with github
 # todo: take todos
