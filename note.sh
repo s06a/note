@@ -18,6 +18,15 @@ addNote() {
   echo "" >> $directory/note.md
 }
 
+addEditNote() {
+  shift
+  touch $directory/temp
+  vim $directory/temp
+  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note.md
+  echo "" >> $directory/note.md
+  rm $directory/temp
+}
+
 initDirectory() {
   if [ ! -d $directory ]
   then
@@ -65,6 +74,10 @@ then
   
     a|-a|add)
       addNote $@
+      ;;
+
+    ae|-ae|add-edit)
+      addEditNote $@
       ;;
   
     s|-s|search)
