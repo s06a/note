@@ -32,6 +32,22 @@ checkDirectory() {
   fi
 }
 
+syncNotes() {
+  cd $directory
+  cd ..
+  if [ ! -e $directory/.git ]
+  then
+    read -p "Enter your noteSync git clone SSH: " noteSyncAddress
+    git clone $noteSyncAddress note
+    cd -
+  else
+    git pull
+    git add .
+    git commit -m 'add new notes'
+    git push
+  fi
+}
+
 searchNote() {
   shift 
   keywords=`echo $@ | sed -e "s/ /.*/g"`
@@ -81,6 +97,10 @@ then
 
     h|-h|help|--help)
       help
+      ;;
+
+    --sync)
+      syncNotes
       ;;
 
     *)
