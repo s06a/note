@@ -1,6 +1,6 @@
 # Note Taking in Terminal
 
-A simple bash code which makes note taking easier. It takes notes in every format, but in a simple way, which makes it convenient to manage knowledge and taking notes in the long term.
+A simple yet powerful bash script which makes note taking easier. It takes notes in every format, but in a simple way, which makes it convenient to manage knowledge and taking notes in the long term.
 
 ## How to install?
 
