@@ -27,10 +27,10 @@ note a [press enter] [write your note] [press ctrl+d when finished]
 - markdown
 - or a complex combination of the afformentioned
 
-#### Search for keywords
+#### Search between notes
 
 ```bash
-note s word1 word2 word3 ...
+note s keyword1 keyword2 keyword3 ...
 ```
 
 ## Bugs and new features
