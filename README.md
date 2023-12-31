@@ -1,6 +1,6 @@
 # Note Taking in Terminal
 
-A simple bash code which makes note taking easier. It takes notes in every format, but in a simple way, which makes it convenient to manage knowledge and taking notes in the long term.
+A simple yet powerful bash script which makes note taking easier. It takes notes in every format, but in a simple way, which makes it convenient to manage knowledge and take notes in the long term.
 
 ## How to install?
 
@@ -27,10 +27,10 @@ note a [press enter] [write your note] [press ctrl+d when finished]
 - markdown
 - or a complex combination of the afformentioned
 
-#### Search for keywords
+#### Search between notes
 
 ```bash
-note s word1 word2 word3 ...
+note s keyword1 keyword2 keyword3 ...
 ```
 
 ## Bugs and new features
