@@ -1,9 +1,8 @@
 #!/bin/bash
 
-# todo: edit note
 # todo: encrypt notes
 # todo: take todos
-# todo: render markdonw
+# todo: render markdown
 
 # ENV VARIABLES
 
@@ -50,8 +49,6 @@ syncNotes() {
     git clone $noteSyncAddress note
     cat $directory/note.md > $directory/note.md.backup
     cat $directory/note.md.backup | sort | uniq > $directory/note.md
-    cd -
-    echo nist
   else
     mv $directory/note.md $directory/note.md.backup
     cd ./note
@@ -78,6 +75,31 @@ removeNote() {
   sed -i.backup "$@d" $directory/note.md
 }
 
+#editNote() {
+#  shift
+#  temp=`sed "$@!d" $directory/note.md`
+#  echo -e "$temp" > $directory/temp
+#  vim $directory/temp
+#  temp=`cat $directory/temp | sed 's/$/\\n/'`
+#  #temp=`cat $directory/temp | sed 's/$/\\n/' | tr -d '\n'`
+#  #sed -i $@"s/.*/$temp/" $directory/note.md
+#  echo -e "$temp" >> $directory/note.md
+#  echo "" >> $directory/note.md
+#  sed -i "$@d" $directory/note.md
+#  rm $directory/temp
+#}
+
+editNote() {
+  shift
+  temp=`sed "$@!d" $directory/note.md`
+  echo -e "$temp" > $directory/temp
+  sed -i.backup "$@d" $directory/note.md
+  vim $directory/temp
+  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note.md
+  echo "" >> $directory/note.md
+  rm $directory/temp
+}
+
 help() {
   echo "Note taking help:"
   echo -e "\tnote a|-a|add [press enter] [write your single/multiple line note]"
@@ -102,6 +124,10 @@ then
 
     ae|-ae|add-edit)
       addEditNote $@
+      ;;
+
+    e|-e|edit)
+      editNote $@
       ;;
   
     s|-s|search)
