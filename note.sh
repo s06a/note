@@ -12,16 +12,16 @@ directory=$HOME/Documents/note
 
 addNote() {
   shift
-  echo -e "$(</dev/stdin)" | sed 's/$/\\n/' | tr -d '\n' >> $directory/note.md
-  echo "" >> $directory/note.md
+  echo -e "$(</dev/stdin)" | sed 's/$/\\n/' | tr -d '\n' >> $directory/note
+  echo "" >> $directory/note
 }
 
 addEditNote() {
   shift
   touch $directory/temp
   vim $directory/temp
-  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note.md
-  echo "" >> $directory/note.md
+  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note
+  echo "" >> $directory/note
   rm $directory/temp
 }
 
@@ -45,58 +45,58 @@ syncNotes() {
   if [ ! -d ./note/.git ]
   then
     read -p "Enter your noteSync git clone SSH: " noteSyncAddress
-    mv $directory/note.md $directory/note.md.backup
+    mv $directory/note $directory/note.backup
     git clone $noteSyncAddress note
-    cat $directory/note.md > $directory/note.md.backup
-    cat $directory/note.md.backup | sort | uniq > $directory/note.md
+    cat $directory/note > $directory/note.backup
+    cat $directory/note.backup | sort | uniq > $directory/note
   else
-    mv $directory/note.md $directory/note.md.backup
+    mv $directory/note $directory/note.backup
     cd ./note
     git pull
-    cat $directory/note.md >> $directory/note.md.backup
-    cat $directory/note.md.backup | sort | uniq > $directory/note.md
+    cat $directory/note >> $directory/note.backup
+    cat $directory/note.backup | sort | uniq > $directory/note
   fi
   git add .
   git commit -m 'add new notes'
   git push
-  rm note.md.backup
+  rm note.backup
 }
 
 searchNote() {
   shift 
   keywords=`echo $@ | sed -e "s/ /.*/g"`
-  result=`grep -n $keywords $directory/note.md`
+  result=`grep -n $keywords $directory/note`
   echo ""
   echo -e "$result" # | sed -E 's/^/\t/'
 }
 
 removeNote() {
   shift
-  sed -i.backup "$@d" $directory/note.md
+  sed -i.backup "$@d" $directory/note
 }
 
 #editNote() {
 #  shift
-#  temp=`sed "$@!d" $directory/note.md`
+#  temp=`sed "$@!d" $directory/note`
 #  echo -e "$temp" > $directory/temp
 #  vim $directory/temp
 #  temp=`cat $directory/temp | sed 's/$/\\n/'`
 #  #temp=`cat $directory/temp | sed 's/$/\\n/' | tr -d '\n'`
-#  #sed -i $@"s/.*/$temp/" $directory/note.md
-#  echo -e "$temp" >> $directory/note.md
-#  echo "" >> $directory/note.md
-#  sed -i "$@d" $directory/note.md
+#  #sed -i $@"s/.*/$temp/" $directory/note
+#  echo -e "$temp" >> $directory/note
+#  echo "" >> $directory/note
+#  sed -i "$@d" $directory/note
 #  rm $directory/temp
 #}
 
 editNote() {
   shift
-  temp=`sed "$@!d" $directory/note.md`
+  temp=`sed "$@!d" $directory/note`
   echo -e "$temp" > $directory/temp
   vim $directory/temp
-  sed -i "$@d" $directory/note.md
-  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note.md
-  echo "" >> $directory/note.md
+  sed -i "$@d" $directory/note
+  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note
+  echo "" >> $directory/note
   rm $directory/temp
 }
 
