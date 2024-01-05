@@ -93,8 +93,8 @@ editNote() {
   shift
   temp=`sed "$@!d" $directory/note.md`
   echo -e "$temp" > $directory/temp
-  sed -i.backup "$@d" $directory/note.md
   vim $directory/temp
+  sed -i "$@d" $directory/note.md
   cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note.md
   echo "" >> $directory/note.md
   rm $directory/temp
