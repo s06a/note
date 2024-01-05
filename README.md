@@ -19,18 +19,45 @@ note i # to initialize the directory
 note a [press enter] [write your note] [press ctrl+d when finished]
 ```
 
-### Notes can be
+#### Add notes using VIM
+```
+note ae [press enter]
 
-- single line
-- multiple line
-- json
-- markdown
-- or a complex combination of the afformentioned
+[write note in vim]
+```
+
+#### Edit notes using VIM
+```
+# find note's line number
+note s keywords # choose the line number from the outputs
+
+# edit the note using its line number
+note e <line_number>
+```
+
+#### Print all notes
+```
+note s .
+```
 
 #### Search between notes
 
 ```bash
 note s keyword1 keyword2 keyword3 ...
+```
+
+#### Remove notes by line number
+```bash
+note r <line_number>
+```
+
+## How to store/sync notes with a private github repository?
+```
+# 1. create a private repository in github to use as a database
+# 2. copy its SSH address
+# 3. sync it using the following command 
+note --sync # follow the prompts
+# use note --sync from now on
 ```
 
 ## Bugs and new features
