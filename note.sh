@@ -95,7 +95,7 @@ editNote() {
   echo -e "$temp" > $directory/temp
   vim $directory/temp
   sed -i "$@d" $directory/note
-  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' >> $directory/note
+  cat $directory/temp | sed 's/$/\\n/' | tr -d '\n' | sed 's/..$//' >> $directory/note
   echo "" >> $directory/note
   rm $directory/temp
 }
