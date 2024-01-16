@@ -151,7 +151,7 @@ then
       help
       ;;
 
-    --sync)
+    sync)
       syncNotes
       ;;
 
