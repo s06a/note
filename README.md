@@ -1,3 +1,5 @@
+# Caution: It's in test stage, feel free to test
+
 # Note Taking in Terminal
 
 A simple yet powerful bash script which makes note taking easier. It takes notes in every format, but in a simple way, which makes it convenient to manage knowledge and take notes in the long term.
