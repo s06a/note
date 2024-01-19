@@ -64,13 +64,13 @@ syncNotes() {
 
 searchNote() {
   shift 
-  if [ ! -z "${@}" ]
+  if [[ ! -z $@ ]]
   then
     keywords=`echo $@ | sed -e "s/ /.*/g"`
   else
     keywords="."
   fi
-  result=`grep -n $keywords $directory/note`
+  result=`grep -niw $keywords $directory/note`
   echo ""
   echo -e "$result" # | sed -E 's/^/\t/'
 }
