@@ -63,14 +63,31 @@ syncNotes() {
 }
 
 searchNote() {
-  shift 
+  shift
+  
+  if [[ $@ =~ "f" ]]
+  then
+    searchPart=`echo $@ | cut -d 'f' -f 1`
+    findPart=`echo $@ | cut -d 'f' -f 2-`
+  else
+    searchPart=`echo $@`
+  fi
+  
   if [[ ! -z $@ ]]
   then
-    keywords=`echo $@ | sed -e "s/ /.*/g"`
+    keywords=`echo $searchPart | sed -e "s/ /.*/g"`
   else
     keywords="."
   fi
+
   result=`grep -niw $keywords $directory/note`
+  
+  if [[ $@ =~ "f" ]]
+  then
+    keywords=`echo $findPart | sed -e "s/ /.*/g"`
+    result=`echo -e $result | sed -n "/\#.*$keywords/,/^$/p"`
+  fi
+  
   echo ""
   echo -e "$result" # | sed -E 's/^/\t/'
 }
@@ -151,7 +168,7 @@ then
       help
       ;;
 
-    sync)
+    --sync|sync)
       syncNotes
       ;;
 
